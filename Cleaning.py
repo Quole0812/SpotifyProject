@@ -21,6 +21,9 @@ df = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
 # drop irrelevant columns
 df = df.drop(columns=['Image URL', 'Last Week', 'Rank'])
 
+# remove duplicates by keeping only the last entry for each song (based on "Song" column)
+df = df.sort_values(by=['Song', 'Date'], ascending=[True, False]).drop_duplicates(subset=['Song'], keep='first')
+
 print("Post Cleaning Overview:")
 print(df.info())
 print("\nFirst few rows:")
