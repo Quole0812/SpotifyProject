@@ -18,6 +18,9 @@ def csvToJson(csv_file_name, output_csv="jsonfile.json"):
     csv_file.to_json(output_csv)
 
 
+
+
+
 # setting up api call, need access token first
 # these are normally valid for 1 hr so u guys can make ur own app and just paste these info here to generate more token
 client_id = 'eae2627823e2419890fa69ae50deec74'  # this is jackson's info plz dont do bad thing
@@ -108,4 +111,31 @@ def getSongInfo(merged_csv, token):
     merged_df.to_csv("Api_kaggle_final.csv", index=False, encoding='utf-8')
 
 
-getSongInfo("hot100_grammys_merged.csv", "BQDfwVpWF3dMZmCx_YOGD9imbhTI5syNYI2hQnFpnRd8QTQPjlFidYzkZAiWHe_M9S7SOsDFh28AoPwXGv1z2CqucFahP2mXkuWKcln41MC6zOck8pv9rl1bd7YJY9TW86k17lJmirw")
+# getSongInfo("hot100_grammys_merged.csv", "BQDfwVpWF3dMZmCx_YOGD9imbhTI5syNYI2hQnFpnRd8QTQPjlFidYzkZAiWHe_M9S7SOsDFh28AoPwXGv1z2CqucFahP2mXkuWKcln41MC6zOck8pv9rl1bd7YJY9TW86k17lJmirw")
+
+def add_column_and_value(csv, column_name, artist, value):
+    df = pd.read_csv(csv)
+    if column_name not in df.columns:
+        df[column_name] = None  # Add column with empty values
+    # Update value for the given track_id
+    if artist in df['Artist'].values:
+        df.loc[df['Artist'] == artist, column_name] = value
+        print(f"Updated '{column_name}' for artist {artist} with value '{value}'")
+    else:
+        print(f"{artist} not found.")
+    df.to_csv("updated_modify.csv", index=False)
+
+def update_column_value(csv, column_name, artist, new_value):
+    df = pd.read_csv(csv)
+    if column_name in df.columns:
+        if artist in df['Artist'].values:
+            df.loc[df['Artist'] == artist, column_name] = new_value
+            print(f"Modified '{column_name}' for artist {artist} to '{new_value}'")
+        else:
+            print(f"{artist} does not exist.")
+    else:
+        print(f"Column '{column_name}' does not exist.")
+    df.to_csv("updated_modify.csv", index=False)
+
+add_column_and_value('Api_kaggle_final.csv','handsomeness', 'Kendrick Lamar', 10)
+update_column_value('updated_modify.csv', 'handsomeness', 'Eminem', 8)
