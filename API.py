@@ -51,9 +51,10 @@ def get_api_token():
         return access_token
     else:
         print("lol smt went wrong")
+        return None
 
 
-# test_token = get_api_token() #run this every 1 hr to get ur token lol
+    # test_token = get_api_token() #run this every 1 hr to get ur token lol
 
 # token = "BQDwvqfuTrtCVgWH7BmIqdvCLB5PKt6vEGCIaTnAHJU4L_KAdgEqlwiRJpbDUmPTeQp6Jfj6p5oOrVmJ3L1figg6DUXqIU7cDAZi1Jz7Pu_nH9FL6D0FWZsoSESzbdUmRHs_1W9tlEA"
 
@@ -88,7 +89,7 @@ def getSongInfo(merged_csv, token):
                 templist.append(info)
             else:
                 print(f"No search results for: {song_name}")
-                # Optional: Add row with Nones if not found
+                # error handle just add none if we can't find
                 info = {
                     'Song': song_name,
                     'Duration_ms': None,
@@ -96,15 +97,15 @@ def getSongInfo(merged_csv, token):
                     'Popularity': None
                 }
                 templist.append(info)
-        else:
-            print(f"API error for {song_name} - Status code: {response.status_code}")
+        else: #handles api erorr
+            print(f"api didn't work for dis {song_name} - status code is {response.status_code}")
             continue
     print(templist)
     tempdf = pd.DataFrame(templist)
 
     merged_df = pd.merge(df, tempdf, on='Song', how="left")
 
-    merged_df.to_csv("Api_kaggle_final", index=False, encoding='utf-8')
+    merged_df.to_csv("Api_kaggle_final.csv", index=False, encoding='utf-8')
 
 
 getSongInfo("hot100_grammys_merged.csv", "BQDfwVpWF3dMZmCx_YOGD9imbhTI5syNYI2hQnFpnRd8QTQPjlFidYzkZAiWHe_M9S7SOsDFh28AoPwXGv1z2CqucFahP2mXkuWKcln41MC6zOck8pv9rl1bd7YJY9TW86k17lJmirw")
