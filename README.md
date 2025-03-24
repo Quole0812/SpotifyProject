@@ -54,8 +54,29 @@ The `main.py` file serves as the core of the ETL processor. Here's how to use it
 --- 
 
 ## Jupyter Notebook Explanation
+The `project_dss.ipynb` contains the SQLite database of the final dataset.
 
-
+1. **Creating Table & Reading CSV:**
+   The SQLite Database has a table called Songs that holds information such as song (name), artist, peak position, week in charts, category,    winner, duration in milliseconds, explicit, and popularity. The data that is inserted into this database is the final dataset `Api_kaggle_final.csv`.
+   
+2. **Summary Ingested Data:**
+   You can get the summary of the ingested data which gives you the number of records and columns.
+   
+3. **Summary Transformed Data:**
+   You can get the summary of the transformed data by removing duplicates and getting the number of records and columns after deduplication.
 ---
 
 ## Conclusions from Data Visualization and Analysis
+The `project_dss.ipynb` file serves as the SQLite database and visualization:
+
+1. **Basic Analysis:**  
+   You can see the first 5 rows of the dataset, we can see that the first 5 rows were mostly not Grammy winners. You can see the number of songs by category and here we can see that most of the songs were Record of the Year. You can see the average popularity by category. Here we can see that Best Pop Duo/Group Performance was the most popular.
+
+2. **Number of Charting Songs in each Grammy Category:**  
+   You can see that most of the charting songs were in the Record of the Year category. 
+
+3. **Average Weeks on Charts: Grammy Winners vs Non-Winners:**  
+   You can see that there is not much discrepency between the Grammy Winners and Non-Winners on the average weeks their songs were on charts.
+
+4. **Weeks on Chart Distribution (Grammy Winners vs. Non-Winners):**  
+   You can see that Grammy Non-Winners had roughly 2 songs that had ~27 weeks on chart which was the highest. Overall, Grammy Non-Winners had more songs on charts than Grammy Winners.
