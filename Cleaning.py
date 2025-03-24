@@ -28,3 +28,26 @@ print(df.head())
 
 # export the df to a new csv file
 df.to_csv('hot100.csv', index=False)
+
+grammys_df = pd.read_csv('originalGrammys2025.csv')
+
+# drop "Entry_ID" and "Category_ID"
+grammys_df = grammys_df.drop(columns=['Entry_ID', 'Category_ID'])
+
+# rename "Work" to "Song"
+grammys_df = grammys_df.rename(columns={'Work': 'Song'})
+
+# drop rows that aren't songs or albums
+grammys_df = grammys_df.dropna(subset=['Song'])
+grammys_df = grammys_df[grammys_df['Song'].str.strip() != '']
+
+# drop rows that aren't songs
+keywords = ['Song', 'Record', 'Performance', 'Recording']
+grammys_df = grammys_df[grammys_df['Category'].str.contains('|'.join(keywords), case=False, na=False)]
+
+print("\nGrammys Data Overview:")
+print(grammys_df.info())
+print("\nFirst few rows:")
+print(grammys_df.head())
+
+grammys_df.to_csv('grammys2025.csv', index=False)
