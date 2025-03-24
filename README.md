@@ -72,15 +72,20 @@ The `project_dss.ipynb` file serves as the SQLite database and visualization:
 1. **Basic Analysis:**  
    You can see the first 5 rows of the dataset, we can see that the first 5 rows were mostly not Grammy winners. You can see the number of songs by category and here we can see that most of the songs were Record of the Year. You can see the average popularity by category. Here we can see that Best Pop Duo/Group Performance was the most popular.
 
+
 2. **Number of Charting Songs in each Grammy Category:**  
    You can see that most of the charting songs were in the Record of the Year category. 
+
 
 3. **Average Weeks on Charts: Grammy Winners vs Non-Winners:**  
    You can see that there is not much discrepency between the Grammy Winners and Non-Winners on the average weeks their songs were on charts.
 
+
 4. **Weeks on Chart Distribution (Grammy Winners vs. Non-Winners):**  
    You can see that Grammy Non-Winners had roughly 2 songs that had ~27 weeks on chart which was the highest. Overall, Grammy Non-Winners had more songs on charts than Grammy Winners.
 
+
 5. **Conclusion:**
+
    With the initial data exploration and analysis we’ve performed, there is no immediate strong relationship between the critical success       and commercial success as seen in the average weeks on charts graph where Grammy Winners and Non-Winners are approximately equal.            However, Grammy-Winning songs have a more distinct separation of distribution in the number of weeks they charted with many being less       than 5 or greater than 15. On the other hand, Grammy Non-Winners have more distribution throughout all the weeks.
    Realistically, the Grammy categories that would directly relate to the Hot 100 charts would be genres that have been historically popular    such as rap, pop, and country. 
