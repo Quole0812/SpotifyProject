@@ -86,6 +86,5 @@ The `project_dss.ipynb` file serves as the SQLite database and visualization:
 
 
 5. **Conclusion:**
-
    With the initial data exploration and analysis we’ve performed, there is no immediate strong relationship between the critical success       and commercial success as seen in the average weeks on charts graph where Grammy Winners and Non-Winners are approximately equal.            However, Grammy-Winning songs have a more distinct separation of distribution in the number of weeks they charted with many being less       than 5 or greater than 15. On the other hand, Grammy Non-Winners have more distribution throughout all the weeks.
    Realistically, the Grammy categories that would directly relate to the Hot 100 charts would be genres that have been historically popular    such as rap, pop, and country. 
