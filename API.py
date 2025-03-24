@@ -26,7 +26,7 @@ def csvToJson(csv_file_name, output_csv="jsonfile.json"):
 client_id = 'eae2627823e2419890fa69ae50deec74'  # this is jackson's info plz dont do bad thing
 client_secret = '8f884de0f9d04452a3116fcdbceb8074'
 
-url = "https://api.spotify.com/v1/"
+# url = "https://api.spotify.com/v1/"
 
 
 # kinda mimiced this
@@ -103,7 +103,7 @@ def getSongInfo(merged_csv, token):
         else: #handles api erorr
             print(f"api didn't work for dis {song_name} - status code is {response.status_code}")
             continue
-    print(templist)
+    # print(templist)
     tempdf = pd.DataFrame(templist)
 
     merged_df = pd.merge(df, tempdf, on='Song', how="left")
@@ -123,7 +123,7 @@ def add_column_and_value(csv, column_name, artist, value):
         print(f"Updated '{column_name}' for artist {artist} with value '{value}'")
     else:
         print(f"{artist} not found.")
-    df.to_csv("updated_modify.csv", index=False)
+    df.to_csv("updated_modify_after_added.csv", index=False)
 
 def update_column_value(csv, column_name, artist, new_value):
     df = pd.read_csv(csv)
@@ -135,7 +135,7 @@ def update_column_value(csv, column_name, artist, new_value):
             print(f"{artist} does not exist.")
     else:
         print(f"Column '{column_name}' does not exist.")
-    df.to_csv("updated_modify.csv", index=False)
+    df.to_csv("modify_update_value.csv", index=False)
 
 
 def delete_column(csv, column_name):
@@ -146,8 +146,8 @@ def delete_column(csv, column_name):
     else:
         print(f"'{column_name}' dne lol")
 
-    df.to_csv("updated_modify.csv", index=False)
+    df.to_csv("modify_delete.csv", index=False)
 
-add_column_and_value('Api_kaggle_final.csv','handsomeness', 'Kendrick Lamar', 10)
-update_column_value('updated_modify.csv', 'handsomeness', 'Eminem', 8)
-delete_column('updated_modify.csv', 'handsomeness')
+# add_column_and_value('Api_kaggle_final.csv','handsomeness', 'Kendrick Lamar', 10)
+# update_column_value('updated_modify.csv', 'handsomeness', 'Eminem', 8)
+# delete_column('updated_modify.csv', 'handsomeness')
