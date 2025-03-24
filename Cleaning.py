@@ -51,17 +51,6 @@ grammys_df = grammys_df[grammys_df['Song'].str.strip() != '']
 keywords = ['Song', 'Record', 'Performance', 'Recording']
 grammys_df = grammys_df[grammys_df['Category'].str.contains('|'.join(keywords), case=False, na=False)]
 
-# only keep the winning songs
-grammys_df = grammys_df[grammys_df['Winner'].str.strip().str.lower() == 'yes']
-
-# no longer need whether or not they won cause they all are winners
-grammys_df = grammys_df.drop(columns=['Winner'])
-
-# rename it to "category won"
-grammys_df = grammys_df.rename(columns={'Category': 'Category Won'})
-
-
-
 print("\nGrammys Data Overview:")
 print(grammys_df.info())
 print("\nFirst few rows:")
