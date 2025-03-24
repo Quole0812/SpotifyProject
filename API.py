@@ -55,17 +55,16 @@ def get_api_token():
 
 # test_token = get_api_token() #run this every 1 hr to get ur token lol
 
-token = "BQDwvqfuTrtCVgWH7BmIqdvCLB5PKt6vEGCIaTnAHJU4L_KAdgEqlwiRJpbDUmPTeQp6Jfj6p5oOrVmJ3L1figg6DUXqIU7cDAZi1Jz7Pu_nH9FL6D0FWZsoSESzbdUmRHs_1W9tlEA"
+# token = "BQDwvqfuTrtCVgWH7BmIqdvCLB5PKt6vEGCIaTnAHJU4L_KAdgEqlwiRJpbDUmPTeQp6Jfj6p5oOrVmJ3L1figg6DUXqIU7cDAZi1Jz7Pu_nH9FL6D0FWZsoSESzbdUmRHs_1W9tlEA"
 
 
 def getSongInfo(merged_csv, token):
-    url = "https://api.spotify.com/v1/search"
-
     headers = {
         "Authorization": f"Bearer {token}"
     }
 
     df = pd.read_csv(merged_csv)
+    templist = []
 
     for index, row in df.iterrows():
         song_name = row['Song']
@@ -75,6 +74,37 @@ def getSongInfo(merged_csv, token):
         response = requests.get(search_url, headers=headers)
 
         if response.status_code == 200:
-            print(response.json())
+            result = response.json()
+            items = result['tracks']['items']
 
-getSongInfo("hot100_grammys_merged.csv", token)
+            if items:
+                track = items[0]
+                info = {
+                    'Song': song_name,
+                    'Duration_ms': track['duration_ms'],
+                    'Explicit': track['explicit'],
+                    'Popularity': track['popularity']
+                }
+                templist.append(info)
+            else:
+                print(f"No search results for: {song_name}")
+                # Optional: Add row with Nones if not found
+                info = {
+                    'Song': song_name,
+                    'Duration_ms': None,
+                    'Explicit': None,
+                    'Popularity': None
+                }
+                templist.append(info)
+        else:
+            print(f"API error for {song_name} - Status code: {response.status_code}")
+            continue
+    print(templist)
+    tempdf = pd.DataFrame(templist)
+
+    merged_df = pd.merge(df, tempdf, on='Song', how="left")
+
+    merged_df.to_csv("Api_kaggle_final", index=False, encoding='utf-8')
+
+
+getSongInfo("hot100_grammys_merged.csv", "BQDfwVpWF3dMZmCx_YOGD9imbhTI5syNYI2hQnFpnRd8QTQPjlFidYzkZAiWHe_M9S7SOsDFh28AoPwXGv1z2CqucFahP2mXkuWKcln41MC6zOck8pv9rl1bd7YJY9TW86k17lJmirw")
