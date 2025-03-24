@@ -40,6 +40,9 @@ grammys_df = grammys_df.drop(columns=['Entry_ID', 'Category_ID'])
 # rename "Work" to "Song"
 grammys_df = grammys_df.rename(columns={'Work': 'Song'})
 
+# rename "Artist(s)" to "Artist"
+grammys_df = grammys_df.rename(columns={'Artist(s)': 'Artist'})
+
 # drop rows that aren't songs or albums
 grammys_df = grammys_df.dropna(subset=['Song'])
 grammys_df = grammys_df[grammys_df['Song'].str.strip() != '']
