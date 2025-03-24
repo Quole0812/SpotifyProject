@@ -137,5 +137,17 @@ def update_column_value(csv, column_name, artist, new_value):
         print(f"Column '{column_name}' does not exist.")
     df.to_csv("updated_modify.csv", index=False)
 
+
+def delete_column(csv, column_name):
+    df = pd.read_csv(csv)
+    if column_name in df.columns:
+        df = df.drop(columns=[column_name])
+        print(f"'{column_name}' gone")
+    else:
+        print(f"'{column_name}' dne lol")
+
+    df.to_csv("updated_modify.csv", index=False)
+
 add_column_and_value('Api_kaggle_final.csv','handsomeness', 'Kendrick Lamar', 10)
 update_column_value('updated_modify.csv', 'handsomeness', 'Eminem', 8)
+delete_column('updated_modify.csv', 'handsomeness')
