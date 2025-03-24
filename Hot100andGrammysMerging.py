@@ -8,9 +8,7 @@ merged_df = pd.merge(hot100_df[['Song', 'Artist', 'Peak Position', 'Weeks in Cha
                      on=['Song', 'Artist'],
                      how='inner')
 
-# Keep only the relevant columns
+# keep only relevant columns
 final_df = merged_df[['Song', 'Artist', 'Peak Position', 'Weeks in Charts', 'Category', 'Winner']]
 
-# Export the merged data
 final_df.to_csv('hot100_grammys_merged.csv', index=False)
-print("\nMerged data exported to 'hot100_grammys_merged.csv'")
