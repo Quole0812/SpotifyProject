@@ -48,6 +48,9 @@ grammys_df = grammys_df[grammys_df['Category'].str.contains('|'.join(keywords), 
 # only keep the winning songs
 grammys_df = grammys_df[grammys_df['Winner'].str.strip().str.lower() == 'yes']
 
+# removing all quotations (unneeded)
+grammys_df = grammys_df.replace('"','', regex=True)
+
 print("\nGrammys Data Overview:")
 print(grammys_df.info())
 print("\nFirst few rows:")
