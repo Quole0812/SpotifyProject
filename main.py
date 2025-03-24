@@ -1,5 +1,5 @@
 # file converter, could fix if result is not desired later https://stackoverflow.com/questions/1871524/how-can-i-convert-json-to-csv
-import panda as pd
+import pandas as pd
 import requests
 import base64
 
