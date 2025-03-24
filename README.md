@@ -35,4 +35,27 @@ This project processes, cleans, enriches, and merges Grammy nominees/winners, Bi
 
 ---
 
+## ETL Processor (main.py) Explanation
 
+The `main.py` file serves as the core of the ETL processor. Here's how to use it:
+
+1. **Spotify API Integration:**  
+   Running `main.py` will fetch audio features from Spotify based on the songs in `hot100_grammys_merged.csv`.
+
+2. **Data Modification:**  
+   You can also modify the dataset by adding new columns and values, updating existing values or deleting columns.
+
+3. **Format Conversion:**  
+   You can also convert the dataset between CSV and JSON, depending on your desired format.
+
+4. **Final Output:**  
+   The final dataset is then saved as `Api_kaggle_final.csv`, ready for analysis or to be inserted into a database.
+
+--- 
+
+## Jupyter Notebook Explanation
+
+
+---
+
+## Conclusions from Data Visualization and Analysis
