@@ -2,6 +2,7 @@
 import pandas as pd
 import requests
 import base64
+import json
 
 
 def jsonToCSV(json_file_name, output_csv="csvfile.csv"):
@@ -54,4 +55,26 @@ def get_api_token():
 
 # test_token = get_api_token() #run this every 1 hr to get ur token lol
 
-token = "BQBJ4ejUWPTP4iJDpbALxoiivXil99DVmSUWdwmM9MeJbHN91G4FPfcjT6kK67Fe3nS_t7RFn9gaUnbYYu87USG05VGF802loSJgvXKBfv787Q5dS03j6ybvB5-_dV1S1FuMJEemyxs"
+token = "BQDwvqfuTrtCVgWH7BmIqdvCLB5PKt6vEGCIaTnAHJU4L_KAdgEqlwiRJpbDUmPTeQp6Jfj6p5oOrVmJ3L1figg6DUXqIU7cDAZi1Jz7Pu_nH9FL6D0FWZsoSESzbdUmRHs_1W9tlEA"
+
+
+def getSongInfo(merged_csv, token):
+    url = "https://api.spotify.com/v1/search"
+
+    headers = {
+        "Authorization": f"Bearer {token}"
+    }
+
+    df = pd.read_csv(merged_csv)
+
+    for index, row in df.iterrows():
+        song_name = row['Song']
+        query = song_name.replace(" ", "%20")
+
+        search_url = f"https://api.spotify.com/v1/search?q={query}&type=track&limit=1"
+        response = requests.get(search_url, headers=headers)
+
+        if response.status_code == 200:
+            print(response.json())
+
+getSongInfo("hot100_grammys_merged.csv", token)
