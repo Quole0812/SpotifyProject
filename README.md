@@ -16,7 +16,7 @@ This project processes, cleans, enriches, and merges Grammy nominees/winners, Bi
 - `Hot100andGrammysMerging.py`: Merges both Kaggle datasets.
 - `Main.py`: Enriches dataset, allows modifications.
 - `API.py`: Handles Spotify API calls & column functions.
-- `project_dss.ipynb`: Contains SQLite database setup & data analysis & visualizations.
+- `project_data_science_systems.ipynb`: Contains SQLite database setup & data analysis & visualizations.
 - `hot100_grammys_merged.csv`: Cleaned and merged dataset containing the two from Kaggle.
 - `api_kaggle_final.csv`: Final dataset containing all three sources.
 
@@ -31,7 +31,7 @@ This project processes, cleans, enriches, and merges Grammy nominees/winners, Bi
    Run `main.py` to enrich the merged dataset with Spotify API song data, apply any column modifications, and handle CSV/JSON conversions. The final output is `api_kaggle_final.csv`.
 
 3. **Database Insertion & Analysis:**  
-   Open `project_dss.ipynb` to load the cleaned datasets into an SQLite database and perform further analysis and visualization.
+   Open `project_data_science_systems.ipynb` to load the cleaned datasets into an SQLite database and perform further analysis and visualization.
 
 ---
 
@@ -56,7 +56,7 @@ The `main.py` file serves as the core of the ETL processor. Here's how to use it
 --- 
 
 ## Jupyter Notebook Explanation
-The `project_dss.ipynb` contains the SQLite database of the final dataset.
+The `project_data_science_systems.ipynb` contains the SQLite database of the final dataset.
 
 1. **Creating Table & Reading CSV:**
    The SQLite Database has a table called Songs that holds information such as song (name), artist, peak position, week in charts, category,    winner, duration in milliseconds, explicit, and popularity. The data that is inserted into this database is the final dataset `Api_kaggle_final.csv`.
@@ -69,7 +69,7 @@ The `project_dss.ipynb` contains the SQLite database of the final dataset.
 ---
 
 ## Conclusions from Data Visualization and Analysis
-The `project_dss.ipynb` file serves as the SQLite database and visualization:
+The `project_data_science_systems.ipynb` file serves as the SQLite database and visualization:
 
 1. **Basic Analysis:**  
    You can see the first 5 rows of the dataset, we can see that the first 5 rows were mostly not Grammy winners. You can see the number of songs by category and here we can see that most of the songs were Record of the Year. You can see the average popularity by category. Here we can see that Best Pop Duo/Group Performance was the most popular.
