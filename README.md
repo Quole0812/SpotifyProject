@@ -51,6 +51,8 @@ The `main.py` file serves as the core of the ETL processor. Here's how to use it
 4. **Final Output:**  
    The final dataset is then saved as `Api_kaggle_final.csv`, ready for analysis or to be inserted into a database.
 
+   Additional modification were done below the `Api_kaggle_final.csv`, for file that gets updated column, we saved it as `updated_modify_after_added.csv`. For file that didn't get a new column but gets a value changed, it is saved as `modify_update_value.csv`. For deleting column, we saved it as `modify_delete.csv`
+
 --- 
 
 ## Jupyter Notebook Explanation
